@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2"></script>
+    <title>Document</title>
+</head>
+<style>
+    .destaque{
+        background-color: red;
+        width: 200px !important;
+    }
+    .encolher{
+        background-color: gray;
+        width: 50px !important;
+    }
+    #efeito{
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+    .cor1{
+        background-color: greenyellow;
+    }
+    .tamanho{
+        width: 100px;
+        height: 100px;
+        transform: rotate(45deg);
+    }
+    .teste1{
+        width: 100px;
+        height: 100px;
+        background-color: palevioletred;
+        border: 1px solid black;
+    }
+    .teste2{
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        border: 1px solid black;
+    }
+    .teste3{
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+        background-color: gold;
+        border: 3px solid black;
+    }
+    .teste4{
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+        background-color: silver;
+        border: 3px solid black;
+    }
+    .barra-progresso{
+        height: 30px;
+        width: 500px;
+        border: 1px solid black;
+    }
+    .progresso{
+        height: 30px;
+        
+        background-color: greenyellow;
+    }
+</style>
+<body>
+    <div id="desafio">
+        <h2>#01</h2>
+        <div>
+            <button @click="iniciarEfeito">Iniciar Efeito</button>
+            <div id="efeito" :class="enfeito"></div>
+        </div>
+        <hr>
+        <h2>#02</h2>
+        <div :class="['cor1', 'tamanho']">Estou sem classe CSS :(</div>
+        <hr>
+        <h2>#03</h2>
+        <div>
+            <input type="text" v-model="classeUsuario3">
+            <div :class="classeUsuario3"></div>
+        </div>
+        <hr>
+        <h2>#04</h2>
+        <div>
+            <input type="text" v-model="classeUsuario4">
+            <input type="text" v-model="aplicarClasse4" :value="aplicarClasse4">
+            <div :class="aplicaEstilo"></div>
+        </div>
+        <hr>
+        <h2>#05</h2>
+        <div>
+            <input type="text" v-model="cor5">
+            <div :style="[estilo1, {'background-color': cor5}]"></div>
+        </div>
+        <hr>
+        <h2>#06</h2>
+        <div>
+            <button @click="progressoIncremento">Iniciar</button>
+            <div class="barra-progresso">
+                <div class="progresso" :style="{'width':progressoCont+'%'}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#desafio',
+        data: {
+            enfeito: '',
+            classeUsuario3:'',
+            aplicarClasse4: false,
+            classeUsuario4:'',
+            cor5:'',
+            estilo1: {
+                backgroundColor: 'gold',
+                    width: '100px',
+                    height: '100px'
+            },
+            progressoCont: 0
+        },
+        methods: {
+            iniciarEfeito(){
+                if(this.enfeito != 'encolher'){
+                    this.enfeito = 'encolher'
+                }
+                else{
+                    this.enfeito = 'destaque'
+                }
+            },
+            progressoIncremento(){
+                const temporizador = setInterval(()=>{
+                    if(this.progressoCont + 5 <= 100)
+                        this.progressoCont += 5
+                    else clearInterval(temporizador)
+                },500)
+            }
+        },
+        computed: {
+            aplicaEstilo(){
+                if(this.aplicarClasse4){
+                    return this.classeUsuario4
+                }
+                else{
+                    this.classeUsuario4 = ''
+                }
+            },
+            
+        },
+        watch: {
+            
+        }
+        
+    })
+</script>
+</html>
