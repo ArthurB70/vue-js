@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="desafio">
+        <div>
+            <button v-on:click="exibirAlerta">
+                Exibir Alerta
+            </button>
+        </div>
+        <hr>
+        <div>
+            <input type="text" v-on:keyup="valor = $event.target.value">
+            <p>{{ valor }}</p>
+        </div>
+        <hr>
+        <div>
+            <input type="text" v-on:keyup.enter="valor = $event.target.value">
+            <p>{{ valor }}</p>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#desafio',
+        data: {
+           valor: '',
+          
+        },
+        methods: {
+           exibirAlerta:function(){
+                alert('Alerta!')
+           }
+        }
+        
+    })
+</script>
+</html>

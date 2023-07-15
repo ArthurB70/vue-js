@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-once>{{ titulo }}</p>
+        <p>{{ saudacao() }}</p>
+        <a v-bind:href="link">Google</a>
+        <hr>
+        <p>Escrever HTML textualmente</p>
+        <p>{{ linkHtml }}</p>
+        <p>Directiva utilizada para interpretar o HTML</p>
+        <p v-html="linkHtml"></p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!',
+            link: 'https://google.com.br',
+            linkHtml: '<a href="https://google.com.br">Google</a>'
+        },
+        methods:{
+            saudacao: function() {
+                console.log(this)
+                this.titulo = "Bom dia!"
+                return this.titulo
+            }
+        }
+    })
+</script>
+</html>

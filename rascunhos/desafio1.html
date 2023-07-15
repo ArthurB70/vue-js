@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2"></script>
+    <title>Document</title>
+</head>
+<body>
+   <div id="desafio">
+        <p>Meu nome é {{ nome }} e tenho {{ idade }} anos.</p>
+        <p>Minha idade multiplicada por 3: {{ idade*3 }}.</p>
+        <p>{{ numeroAleatorio() }}</p>
+        <div>
+            <img height="400" alt="" v-bind:src="imagemSrc">
+        </div>
+      
+        <div>
+            <input type="text" v-bind:value="nome">
+        </div>
+   </div>
+</body>
+<script>
+    new Vue({
+        el: '#desafio',
+        data: {
+            nome: 'Roberto',
+            idade: '99',
+            imagemSrc: 'https://t.ctcdn.com.br/LlXbHd08zCKJ03umpUYdK5m3huA=/959x539/smart/filters:format(webp)/i598772.jpeg'
+        
+        },
+        methods:{
+            numeroAleatorio: function() {
+                return Math.random(0, 1).toFixed(2)
+            }
+        }
+    })
+</script>
+</html>
